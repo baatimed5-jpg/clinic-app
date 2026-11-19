@@ -1,0 +1,41 @@
+@model ClinicApp.Models.Doctor
+
+@{
+    ViewData["Title"] = "Doctor Details";
+}
+
+<div class="page-head">
+    <h1>Doctor Details</h1>
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.DoctorId" class="btn btn-primary">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+
+<div class="panel">
+    <dl class="row mb-0">
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.FullName)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.FullName)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Specialization)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Specialization)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Phone)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Phone)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.Email)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+
+        <dt class="col-sm-3">@Html.DisplayNameFor(model => model.IsAvailable)</dt>
+        <dd class="col-sm-9">
+            @if (Model.IsAvailable)
+            {
+                <span class="badge bg-success">Available</span>
+            }
+            else
+            {
+                <span class="badge bg-secondary">Unavailable</span>
+            }
+        </dd>
+    </dl>
+</div>

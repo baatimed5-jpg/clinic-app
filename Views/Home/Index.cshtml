@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <h1>Welcome to ClinicApp</h1>
+    <p>Manage patients, doctors, appointments and medical records — all in one place.</p>
+</section>
+
+<div class="feature-grid">
+    <a class="feature-card" asp-controller="Patients" asp-action="Index">
+        <h5>Patients</h5>
+        <p>Register and view patient profiles.</p>
+    </a>
+    <a class="feature-card" asp-controller="Doctors" asp-action="Index">
+        <h5>Doctors</h5>
+        <p>Manage staff and specializations.</p>
+    </a>
+    <a class="feature-card" asp-controller="Appointments" asp-action="Index">
+        <h5>Appointments</h5>
+        <p>Schedule and track visits.</p>
+    </a>
+    <a class="feature-card" asp-controller="MedicalRecords" asp-action="Index">
+        <h5>Medical Records</h5>
+        <p>Diagnoses and prescriptions.</p>
+    </a>
+</div>

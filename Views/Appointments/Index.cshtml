@@ -1,0 +1,50 @@
+@model IEnumerable<ClinicApp.Models.Appointment>
+
+@{
+    ViewData["Title"] = "Appointments";
+}
+
+<div class="page-head">
+    <h1>Appointments</h1>
+    <a asp-action="Create" class="btn btn-primary">+ New Appointment</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Patient</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Reason</th>
+            <th>Status</th>
+            <th class="text-end">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Patient?.FullName</td>
+                <td>@item.Doctor?.FullName</td>
+                <td>@item.AppointmentDate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>@item.Reason</td>
+                <td>
+                    <span class="badge @(item.Status == "Scheduled" ? "bg-success" : item.Status == "Completed" ? "bg-primary" : "bg-danger")">
+                        @item.Status
+                    </span>
+                </td>
+                <td class="text-end">
+                    <a asp-action="Details" asp-route-id="@item.AppointmentId" class="btn btn-sm btn-secondary">Details</a>
+                    <a asp-action="Edit" asp-route-id="@item.AppointmentId" class="btn btn-sm btn-warning">Edit</a>
+                    @if (item.Status != "Cancelled" && item.Status != "Completed")
+                    {
+                        <a asp-action="Cancel" asp-route-id="@item.AppointmentId"
+                           class="btn btn-sm btn-danger"
+                           onclick="return confirm('Are you sure you want to cancel this appointment?')">Cancel</a>
+                    }
+                    <a asp-action="Delete" asp-route-id="@item.AppointmentId" class="btn btn-sm btn-dark">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
